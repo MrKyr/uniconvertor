@@ -155,10 +155,10 @@ LONG_DEB_DESCRIPTION = ''' UniConvertor is a multiplatform universal vector grap
 ############################################################
 # Build data
 ############################################################
-install_path = '/usr/lib/%s-%s' % (NAME, VERSION)
+install_path = '/usr/local/lib/%s-%s' % (NAME, VERSION)
 os.environ["APP_INSTALL_PATH"] = "%s" % (install_path,)
 src_path = 'src'
-include_path = '/usr/include'
+include_path = '/usr/local/include'
 modules = []
 scripts = ['src/script/uniconvertor', 'src/script/uc2',]
 deb_scripts = []
@@ -225,8 +225,8 @@ if len(sys.argv) > 1:
             # removing scripts
             for item in scripts:
                 filename = os.path.basename(item)
-                print('REMOVE: /usr/bin/' + filename)
-                os.system('rm -rf /usr/bin/' + filename)
+                print('REMOVE: /usr/local/bin/' + filename)
+                os.system('rm -rf /usr/local/bin/' + filename)
             # removing data files
             for item in data_files:
                 location = item[0]
@@ -253,8 +253,8 @@ with open('setup.cfg.in', 'rb') as fileptr:
     if rpm_depends:
         content += '\nrequires = ' + rpm_depends
 
-with open('setup.cfg', 'wb') as fileptr:
-    fileptr.write(content)
+# with open('setup.cfg', 'wb') as fileptr:
+#     fileptr.write(content)
 
 ############################################################
 # Native extensions
